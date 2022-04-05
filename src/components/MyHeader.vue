@@ -1,12 +1,15 @@
 <template>
   <div class="MyHeader">
-    <h1> {{ title }}</h1>
+    {{ title }}
+    <MyButton text="Add Task" color="teal"/>
   </div>
 </template>
 
 <script>
+import MyButton from "@/components/MyButton";
 export default {
   name: 'MyHeader',
+  components: { MyButton },
   props: {
     title: {
       type: String,
@@ -17,10 +20,12 @@ export default {
 </script>
 
 <style scoped>
-MyHeader {
+.MyHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  color: darkcyan;
+  font-size: 25px;
 }
 </style>
