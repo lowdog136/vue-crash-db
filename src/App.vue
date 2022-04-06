@@ -1,27 +1,46 @@
 <template>
   <div class="container">
-    <MyHeader title="Диспетчер задач"/>
-    <MyTasks @delete-task="deleteTask" :tasks="tasks"/>
+    <MyHeader @toggle-add-task="toggleAddTask" :showAddTask="showAddTask" title="Диспетчер задач"/>
+    <div v-show="showAddTask">
+      <AddTask @add-task="addTask"/>
+    </div>
+
+    <MyTasks @toggle-reminder="$emit('toggleReminder')" @delete-task="deleteTask" :tasks="tasks"/>
   </div>
 </template>
 
 <script>
 import MyHeader from "@/components/MyHeader";
 import MyTasks from "@/components/MyTasks";
+import AddTask from "@/components/AddTask";
 
 export default {
   name: 'App',
   components: {
-    MyHeader, MyTasks
+    AddTask,
+    MyHeader,
+    MyTasks
   },
   data () {
     return {
-      tasks: []
+      tasks: [],
+      showAddTask: true
     }
   },
   methods: {
+    toggleAddTask () {
+      this.showAddTask = !this.showAddTask
+    },
+    addTask (task) {
+      this.tasks = [...this.tasks, task]
+    },
     deleteTask (id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id)
+      if (confirm('Уверены?')){
+        this.tasks = this.tasks.filter((task) => task.id !== id)
+      }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder } : task)
     }
 
   },
@@ -43,7 +62,7 @@ export default {
         id: 3,
         text: 'Налоговая',
         day: '22 апреля 10:00',
-        reminder: false
+        reminder: true
       }
     ]
   }
