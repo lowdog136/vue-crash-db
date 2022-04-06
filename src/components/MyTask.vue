@@ -1,9 +1,10 @@
 <template>
   <div :class="[task.reminder ? 'reminder' : '', 'task']">
-    <h3>{{ task.text }}
-      <p>{{ task.day }}</p>
-    </h3>
-    <i @click="onDelete()" class="fas fa-times"></i>
+    <div class="title_task">
+      {{ task.text }}
+      <p style="font-style: oblique">{{ task.day }}</p>
+    </div>
+    <h2><i @click="onDelete()" class="fas fa-times"></i></h2>
   </div>
 </template>
 
@@ -22,11 +23,16 @@ export default {
 </script>
 
 <style scoped>
+.title_task{
+  font-size: 16px;
+  margin: 0 15px;
+}
 .task.reminder {
-  border-left: 5px solid green;
+  border-left: 5px solid #0c850c;
 }
 .fas {
   color: red;
+  margin: 15px;
 }
 .task {
   display: flex;

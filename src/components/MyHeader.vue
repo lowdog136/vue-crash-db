@@ -1,7 +1,7 @@
 <template>
   <div class="MyHeader">
     {{ title }}
-    <MyButton text="Add Task" color="teal"/>
+    <MyButton text="Добавить задачу" color="teal"/>
   </div>
 </template>
 

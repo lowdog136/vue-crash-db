@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <MyHeader title="Task Tracker"/>
+    <MyHeader title="Диспетчер задач"/>
     <MyTasks @delete-task="deleteTask" :tasks="tasks"/>
   </div>
 </template>
