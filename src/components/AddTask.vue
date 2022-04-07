@@ -30,7 +30,7 @@ export default {
     onSubmit(e) {
       e.preventDefault()
       if (!this.text) {
-        alert('Pleade add task')
+        alert('Please add task')
         return
       }
       const newTask = {
